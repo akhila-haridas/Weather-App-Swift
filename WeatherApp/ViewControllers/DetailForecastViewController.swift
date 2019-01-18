@@ -15,7 +15,6 @@ class DetailForecastViewController: UIViewController,MFMessageComposeViewControl
     @IBOutlet weak var lblHumidity: UILabel?
     @IBOutlet weak var lblPressure: UILabel?
     @IBOutlet weak var lblDescription: UILabel?
-    var temperature: Temperature?
     var forecast: Forecast?
 
     override func viewDidLoad() {
@@ -26,16 +25,16 @@ class DetailForecastViewController: UIViewController,MFMessageComposeViewControl
         super.viewWillAppear(animated)
         if forecast != nil {
             lblDescription?.text = forecast?.weather?[0].descriptionText
-            lblMinTemp?.text = Utils.getTemperatureInCelcius(kelvin: forecast?.temp?.min ?? 0)
-            lblMaxTemp?.text = Utils.getTemperatureInCelcius(kelvin: forecast?.temp?.max ?? 0)
-            lblPressure?.text = String(format: "%f", forecast?.pressure ?? 0)
-            lblHumidity?.text = String(format: "%f", forecast?.humidity ?? 0)
+            lblMinTemp?.text = Utils.getTemperatureInCelcius(kelvin: forecast?.main?.temp_min ?? 0)
+            lblMaxTemp?.text = Utils.getTemperatureInCelcius(kelvin: forecast?.main?.temp_max ?? 0)
+            lblPressure?.text = String(format: "%f", forecast?.main?.pressure ?? 0)
+            lblHumidity?.text = String(format: "%f", forecast?.main?.humidity ?? 0)
         }
     }
     
     @IBAction func shareTextButton(_ sender: UIBarButtonItem) {
         
-        let text = "Temp Min: \(Utils.getTemperatureInCelcius(kelvin: forecast?.temp?.min ?? 0)), Temp Max: \(Utils.getTemperatureInCelcius(kelvin: forecast?.temp?.max ?? 0))"
+        let text = "Temp Min: \(Utils.getTemperatureInCelcius(kelvin: forecast?.main?.temp_min ?? 0)), Temp Max: \(Utils.getTemperatureInCelcius(kelvin: forecast?.main?.temp_max ?? 0))"
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
             controller.body = text

@@ -8,21 +8,20 @@
 
 import Foundation
 
-public class Temperature {
-    public var day : Double?
-    public var min : Double?
-    public var max : Double?
-    public var night : Double?
-    public var eve : Double?
-    public var morn : Double?
+public class Main {
+    public var temp : Double?
+    public var temp_min : Double?
+    public var temp_max : Double?
+    public var pressure : Double?
+    public var humidity : Double?
     
    
-    public class func modelsFromDictionaryArray(array:NSArray) -> [Temperature]
+    public class func modelsFromDictionaryArray(array:NSArray) -> [Main]
     {
-        var models:[Temperature] = []
+        var models:[Main] = []
         for item in array
         {
-            models.append(Temperature(dictionary: item as! NSDictionary)!)
+            models.append(Main(dictionary: item as! NSDictionary)!)
         }
         return models
         
@@ -30,12 +29,11 @@ public class Temperature {
     
     required public init?(dictionary: NSDictionary) {
         
-        day = dictionary["day"] as? Double
-        min = dictionary["min"] as? Double
-        max = dictionary["max"] as? Double
-        night = dictionary["night"] as? Double
-        eve = dictionary["eve"] as? Double
-        morn = dictionary["morn"] as? Double
+        temp = dictionary["temp"] as? Double
+        temp_min = dictionary["temp_min"] as? Double
+        temp_max = dictionary["temp_max"] as? Double
+        pressure = dictionary["pressure"] as? Double
+        humidity = dictionary["humidity"] as? Double
     }
 
 }

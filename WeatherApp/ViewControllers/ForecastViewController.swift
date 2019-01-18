@@ -1,4 +1,4 @@
-//
+
 //  ForecastViewController.swift
 //  WeatherApp
 //
@@ -48,8 +48,8 @@ class ForecastViewController: UIViewController {
             longitude = longitude + "77.580643"
         }
         let urlString = latitude + longitude + "&cnt=16"
-//        let requestURL = kForecastAPI + urlString + kWeatherAPIKey
-        let requestURL = "https://samples.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10&appid=b1b15e88fa797225412429c1c50c122a1"
+        let requestURL = kForecastAPI + urlString + kWeatherAPIKey
+//        let requestURL = "https://samples.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10&appid=b1b15e88fa797225412429c1c50c122a1"
         APIClient.sharedInstance.fetchDictionaryDataWithGetRequest(requestUrl: requestURL, parameters: [:], headers: [:]) { (error, response) in
             self.loader?.stopAnimating()
             print(response)
